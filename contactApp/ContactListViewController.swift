@@ -15,6 +15,11 @@ class ContactListViewController: UITableViewController {
         DataManager.shared.generateData(count: 14)
         persons = DataManager.shared.persons
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let detailVC = segue.destination as? DetailViewController else { return }
+        detailVC.person = sender as? Person
+    }
 
     // MARK: - Table view data source
 
@@ -23,7 +28,6 @@ class ContactListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       // guard let count = persons.count else { return 0 }
         return persons.count
     }
 
@@ -35,6 +39,8 @@ class ContactListViewController: UITableViewController {
         return cell
     }
     
-
-  
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "detailSegue", sender: persons[indexPath.row])
+    }
+    
 }

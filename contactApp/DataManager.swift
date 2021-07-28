@@ -1,9 +1,9 @@
 
 class DataManager {
-    var persons: [Person] = []
-    
     static let shared = DataManager()
     
+    var persons: [Person] = []
+
     private var names: [String] = ["John", "Sven", "Kate", "Carl", "Alice", "Mary", "Abraham", "Elliah", "Ariel", "Nataly", "Amanda", "Randy", "Barbara", "Henry", "Michael"]
     private var surnames: [String] = ["Anderson", "Smith", "Doe", "Katz", "Jones", "Ramirez", "Ramone", "Armstrong", "James", "Adams", "Johnson", "Daniels", "Samuels", "Rogers", "Jackson"]
     
@@ -13,8 +13,7 @@ class DataManager {
         var randomNumbers: [String: Bool] = [:]
         var randomEmails: [String: Bool] = [:]
         
-        for iteration in 0...count {
-            print("generation iterations is: \(iteration)")
+        for _ in 0...count {
             iterationReset: do {
                 guard let name = names.randomElement() else { return }
                 guard let surname = surnames.randomElement() else { return }
